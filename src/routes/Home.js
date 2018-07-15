@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../components/Partial/Header'
+import Footer from '../components/Partial/Footer'
 
 
 @connect(({ login, user }) => ({
