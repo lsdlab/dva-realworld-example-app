@@ -1,3 +1,4 @@
+import { stringify } from 'qs';
 import request from '../utils/request';
 
 const apiHost = 'https://conduit.productionready.io/api';
