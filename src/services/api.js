@@ -15,9 +15,9 @@ function constructHeaders() {
   }
 }
 
-
+// auth
 export async function authLogin(params) {
-  return request(`${apiHost}/users/login`, {
+  return request(`${apiHost}/users/login/`, {
     headers: constructHeaders(),
     method: 'POST',
     body: params,
@@ -46,6 +46,7 @@ export async function authUpdateUser(params) {
   });
 }
 
+// profile
 export async function profileGet(username) {
   return request(`${apiHost}/profiles/${username}/`, {
     headers: constructHeaders(),
@@ -67,6 +68,7 @@ export async function profileUnfollow(username) {
   });
 }
 
+// tags
 export async function listTags() {
   return request(`${apiHost}/tags/`, {
     headers: constructHeaders(),
@@ -74,10 +76,75 @@ export async function listTags() {
   });
 }
 
+// articles
 export async function queryArticles(params) {
-  return request(`${apiHost}/articles/?${stringify(params)}`, {
+  return request(`${apiHost}/articles?${stringify(params)}`, {
     headers: constructHeaders(),
     method: 'GET',
   });
 }
 
+export async function GetArticle(slug) {
+  return request(`${apiHost}/articles/${slug}/`, {
+    headers: constructHeaders(),
+    method: 'GET',
+  });
+}
+
+export async function CreateArticle(params) {
+  return request(`${apiHost}/articles/`, {
+    headers: constructHeaders(),
+    method: 'POST',
+  });
+}
+
+export async function UpdateArticle(slug, params) {
+  return request(`${apiHost}/articles/${slug}`, {
+    headers: constructHeaders(),
+    method: 'PUT',
+  });
+}
+
+export async function DeleteArticle(slug) {
+  return request(`${apiHost}/articles/${slug}`, {
+    headers: constructHeaders(),
+    method: 'DELETE',
+  });
+}
+
+export async function ArticleFavorite(slug) {
+  return request(`${apiHost}/articles/${slug}/favorite/`, {
+    headers: constructHeaders(),
+    method: 'POST',
+  });
+}
+
+export async function ArticleUnfavorite(slug) {
+  return request(`${apiHost}/articles/${slug}/unfavorite/`, {
+    headers: constructHeaders(),
+    method: 'DELETE',
+  });
+}
+
+// comments
+export async function CreateComments(slug, params) {
+  return request(`${apiHost}/articles/${slug}/comments/`, {
+    headers: constructHeaders(),
+    method: 'POST',
+    body: params,
+  });
+}
+
+export async function DeleteComments(slug, commentID) {
+  return request(`${apiHost}/articles/${slug}/comments/${commentID}/`, {
+    headers: constructHeaders(),
+    method: 'DELETE',
+  });
+}
+
+export async function queryArticleComments(slug) {
+  return request(`${apiHost}/articles/${slug}/comments/`, {
+    headers: constructHeaders(),
+    method: 'GET',
+  });
+}
